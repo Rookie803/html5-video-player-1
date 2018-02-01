@@ -1,0 +1,29 @@
+[JS]
+
+$scope.videoSeek = function($event) {
+    var w = document.getElementById('progressMeterFull').offsetWidth;
+    var d = $scope.videoDisplay.duration;
+    var s = Math.round($event.pageX / w * d);
+    $scope.videoDisplay.currentTime = s;
+}
+
+$scope.updateTime = function(e) {
+    if(!$scope.videoDisplay.seeking){
+        $scope.currentTime = e.target.currentTime;
+        if($scope.currentTime == $scope.totalTime){
+            $scope.videoDisplay.pause();
+            $scope.videoPlaying = false;
+            $scope.currentTime = 0;
+            $('#playBtn').children("span").toggleClass("glyphicon-play", true);
+            $('#playBtn').children("span").toggleClass("glyphicon-pause", false);
+        }
+    }
+}
+    
+    
+
+[HTML]
+
+<div id="progressMeterFull" ng-click="videoSeek($event)">
+    <div id="progressMeter" ng-click="videoSeek($event)" style="width:{{scrubLeft+7}}px"></div>
+</div>

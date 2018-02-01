@@ -1,0 +1,24 @@
+[JS]
+var videoApp = angular.module('videoApp', ['ngAnimate']);
+
+
+[HTML]
+<link rel="stylesheet" href="css/animate.css">
+
+<script src="js/angular-animate.min.js"></script>
+
+
+[CSS]
+/* ANIMATIONS */
+.ng-hide-remove {
+    -webkit-animation: fadeIn 0.50s;
+    animation: fadeIn 0.50s;
+}
+ 
+.ng-hide-add {
+    -webkit-animation: fadeOut 0.75s;
+    animation: fadeOut 0.75s;
+    display: block !important;
+}
+
+

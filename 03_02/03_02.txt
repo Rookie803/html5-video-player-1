@@ -1,0 +1,13 @@
+[HTML]
+<body ng-controller="VideoController">
+
+{{message}}
+
+
+[JS]
+videoApp.controller('VideoController', ['$scope', function($scope) {
+    $scope.message = "AngularJS Test!"; 
+}]);
+
+
+

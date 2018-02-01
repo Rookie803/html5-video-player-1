@@ -1,0 +1,10 @@
+[HTML]
+<html lang="en">
+
+<script src="js/video-app.js"></script> 
+
+
+
+[JS]
+var videoApp = angular.module('videoApp', []);
+

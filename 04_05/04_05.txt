@@ -1,0 +1,57 @@
+[JS]
+$scope.scrubTop = -1000;
+$scope.scrubLeft = -1000;
+$scope.vidHeightCenter = -1000;
+$scope.vidWidthCenter = -1000;
+
+
+$scope.updateLayout = function() {
+    $scope.scrubTop = document.getElementById('progressMeterFull').offsetTop-2;
+    $scope.vidHeightCenter =  $scope.videoDisplay.offsetHeight/2 - 50;
+    $scope.vidWidthCenter = $scope.videoDisplay.offsetWidth/2 - 50;
+    if(!$scope.$$phase) {
+        $scope.$apply();
+    }
+}
+    
+
+$interval(function(){
+    var t = $scope.videoDisplay.currentTime;
+    var d = $scope.videoDisplay.duration;
+    var w = t / d * 100;
+    var p = document.getElementById('progressMeterFull').offsetLeft + document.getElementById('progressMeterFull').offsetWidth;
+    $scope.scrubLeft = (t / d * p) - 7;
+    $scope.updateLayout();
+},100);
+
+       
+
+
+[HTML]
+<div id="progressMeterFull">
+    <div id="progressMeter" style="width:{{scrubLeft+7}}px"></div>
+</div>
+        
+
+<div id="bigPlayButton" ng-click="togglePlay()" ng-hide="videoPlaying" class="well" style="margin-top:{{vidHeightCenter}}px;margin-left:{{vidWidthCenter}}px;"><span class="glyphicon glyphicon-play"></span></div>
+            
+
+
+[CSS]
+/* PROGRESSBAR */
+#progressMeterFull, #progressMeter {
+    cursor: pointer;
+    height:11px;
+    margin:0;
+}
+#progressMeterFull {
+    background-color: #5e6368;
+    position: relative;
+}
+#progressMeter {
+    background-color: #5d1f1c;
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:0px;
+}

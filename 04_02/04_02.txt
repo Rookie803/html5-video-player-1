@@ -1,0 +1,39 @@
+[HTML]
+<video id="VideoElement" ng-click="togglePlay()" width="100%" height="100%" src="{{videoSource}}"></video>
+<div id="bigPlayButton" ng-click="togglePlay()" ng-hide="videoPlaying" class="well"><span class="glyphicon glyphicon-play"></span></div>
+<div id="videoTitle" ng-hide="videoPlaying">{{titleDisplay}}</div>
+
+
+<a id="playBtn" ng-click="togglePlay()" class="btn btn-default"><span class="glyphicon glyphicon-play"></span></a>
+<a id="muteBtn" ng-click="toggleMute()" class="btn btn-default"><span class="glyphicon glyphicon-volume-up"></span></a>
+            
+
+[JS]
+$scope.videoPlaying = false; 
+    
+    $scope.togglePlay = function() { 
+        if($scope.videoDisplay.paused){
+            $scope.videoDisplay.play();
+            $scope.videoPlaying = true;
+            $('#playBtn').children("span").toggleClass("glyphicon-play", false);
+            $('#playBtn').children("span").toggleClass("glyphicon-pause", true);
+        }else{
+            $scope.videoDisplay.pause();
+            $scope.videoPlaying = false;
+            $('#playBtn').children("span").toggleClass("glyphicon-play", true);
+            $('#playBtn').children("span").toggleClass("glyphicon-pause", false);
+        }
+    }
+    
+    $scope.toggleMute = function() {
+        if($scope.videoDisplay.volume == 0.0){
+            $scope.videoDisplay.volume = 1.0;
+            $('#muteBtn').children("span").toggleClass("glyphicon-volume-up", true);
+            $('#muteBtn').children("span").toggleClass("glyphicon-volume-off", false);
+        }else{
+            $scope.videoDisplay.volume = 0.0;
+            $('#muteBtn').children("span").toggleClass("glyphicon-volume-up", false);
+            $('#muteBtn').children("span").toggleClass("glyphicon-volume-off", true);
+        }
+    }
+

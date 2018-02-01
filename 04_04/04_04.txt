@@ -1,0 +1,37 @@
+[JS] AFTER CONTROLLER!
+videoApp.filter('time', function() {
+    return function(seconds) {
+        var hh = Math.floor(seconds / 3600), mm = Math.floor(seconds / 60) % 60, ss = Math.floor(seconds) % 60;
+        return hh + ":" + (mm < 10 ? "0" : "") + mm + ":" + (ss < 10 ? "0" : "") + ss;
+    };
+});
+
+
+
+[HTML]
+<span id="videoTime">{{currentTime | time}} / {{totalTime | time}}</span>
+
+
+
+[JS]
+videoApp.controller('VideoController', ['$scope', '$window', '$interval', function($scope, $window, $interval) {
+    
+$interval(function(){
+    $scope.updateLayout();
+},100);
+       
+    
+
+
+$scope.updateTime = function(e) {
+    $scope.currentTime = e.target.currentTime;
+
+    if($scope.currentTime == $scope.totalTime){
+        $scope.videoDisplay.pause();
+        $scope.videoPlaying = false;
+        $scope.currentTime = 0;
+        $('#playBtn').children("span").toggleClass("glyphicon-play", true);
+        $('#playBtn').children("span").toggleClass("glyphicon-pause", false);
+    }
+
+}

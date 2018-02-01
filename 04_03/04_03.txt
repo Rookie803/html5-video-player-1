@@ -1,0 +1,33 @@
+[HTML]
+<span id="videoTime">{{currentTime}} / {{totalTime}}</span>
+
+
+[JS]
+    $scope.currentTime;
+    $scope.totalTime;
+    
+    $scope.initPlayer = function() {
+        $scope.currentTime = 0;
+        $scope.totalTime = 0;
+        $scope.videoDisplay.addEventListener("timeupdate", $scope.updateTime, true);
+        $scope.videoDisplay.addEventListener("loadedmetadata", $scope.updateData, true);
+    }
+    
+    $scope.updateData = function(e) {
+        $scope.totalTime = e.target.duration;
+    }
+    
+    $scope.updateTime = function(e) {
+        $scope.currentTime = e.target.currentTime;
+        $scope.updateLayout();
+    }
+
+    $scope.updateLayout = function() {
+        if(!$scope.$$phase) {
+            $scope.$apply();
+        }
+    }
+
+
+
+$scope.initPlayer();

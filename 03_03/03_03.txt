@@ -1,0 +1,17 @@
+[HTML]
+<script>
+    var videoSource = "video/StarlightScamper.mp4";
+    var titleDisplay = "StarlightScamper";
+    var videoDescription = "Starlight Scamper: a project built for the Lynda.com course 'HTML5 Canvas and WebGL in Flash Professional CC'.";
+</script>
+    
+
+[JS]
+videoApp.controller('VideoController', ['$scope', '$window', function($scope, $window) {
+    $scope.videoDisplay = document.getElementById("VideoElement");
+    $scope.videoSource = $window.videoSource;
+    $scope.titleDisplay = $window.titleDisplay;
+    $scope.videoDescription = $window.videoDescription;
+}]);
+
+

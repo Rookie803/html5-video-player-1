@@ -1,0 +1,9 @@
+[JS]
+videoApp.controller('VideoController', ['$scope', '$window', '$interval', '$http', function($scope, $window, $interval, $http) {
+
+$scope.playlist;
+
+$http.get('data/playlist.json').success(function(data) {
+    $scope.playlist = data;
+});
+

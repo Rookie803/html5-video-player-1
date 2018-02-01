@@ -1,0 +1,18 @@
+[HTML]
+<a id="fsBtn" ng-click="toggleFullscreen()" class="btn btn-default pull-right"><span class="glyphicon glyphicon-fullscreen"></span></a>
+
+
+[JS]
+$scope.toggleFullscreen = function() {
+    var v = $scope.videoDisplay;
+    if(v.requestFullscreen) {
+        v.requestFullscreen();
+    }else if(v.mozRequestFullScreen) {
+        v.mozRequestFullScreen();
+    }else if(v.webkitRequestFullscreen) {
+        v.webkitRequestFullscreen();
+    }else if(v.msRequestFullscreen) {
+        v.msRequestFullscreen();
+    }
+}
+

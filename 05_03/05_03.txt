@@ -1,0 +1,20 @@
+[HTML]
+<ul class="list-group" ng-model="playlist">
+    <h2>Playlist:</h2>
+    <li class="list-group-item" ng-repeat="video in playlist" ng-click="videoSelected($index)">{{video.title}}</li>
+</ul>
+
+
+[JS]
+$scope.videoSelected = function(i) {
+    $scope.titleDisplay = $scope.playlist[i].title;
+    $scope.videoDescription = $scope.playlist[i].description;
+    $scope.videoSource = $scope.playlist[i].path;
+    $scope.videoDisplay.load($scope.videoSource);
+    $scope.videoPlaying = false;
+    $('#playBtn').children("span").toggleClass("glyphicon-play", true);
+    $('#playBtn').children("span").toggleClass("glyphicon-pause", false);
+    $scope.showOptions = false;
+}
+
+
